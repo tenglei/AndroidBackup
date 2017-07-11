@@ -1,0 +1,22 @@
+package com.example.androidtest;
+
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+
+public class BluetoothReceiver extends BroadcastReceiver {
+
+	@Override
+	public void onReceive(Context context, Intent intent) {
+		// TODO Auto-generated method stub
+		String action = intent.getAction();
+        if(BluetoothDevice.ACTION_FOUND.equals(action))
+        {    
+                   //只要BluetoothReceiver接收到来自于系统的广播,这个广播是什么呢,是我找到了一个远程蓝牙设备
+                   //Intent代表刚刚发现远程蓝牙设备适配器的对象,可以从收到的Intent对象取出一些信息
+                   BluetoothDevice bluetoothDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                   Log.d("mytag",bluetoothDevice.getAddress()); 
+         } 
+	}
+
+}
